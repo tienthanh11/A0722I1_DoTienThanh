@@ -1,0 +1,125 @@
+<!--+++++++++++++++++++++header+++++++++++++++++++++-->
+<div class="container">
+  <div class="row m-0">
+    <div class="col-md-3 col-sm-6 row d-flex justify-content-center align-items-center" style="margin-top: 10px;">
+      <div class="col-md-2 d-flex justify-content-center align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+          <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5
+          0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3
+          8a.5.50 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1
+          1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0
+          1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414
+          1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1
+          0 .708z"/>
+        </svg>
+      </div>
+      <div class="col-md-7 fs-6 p-0" style="display: contents">
+        <span>Weather: 30 °C / 86 °F</span>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 m-0 row d-flex justify-content-center align-items-center">
+      <div class="col-md-2 d-flex justify-content-center align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-stopwatch" viewBox="0 0 16 16">
+          <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+          <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1
+          .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512
+          0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+        </svg>
+      </div>
+      <div class="col-md-8">
+        Local time: <span id="time"></span>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-center align-items-end" style="flex-direction: column;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">EN</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">VI</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">JA</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">KR</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">RU</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CN</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!--+++++++++++++++++++++header2+++++++++++++++++++++-->
+  <div class="row">
+    <div class="col-md-3 d-flex justify-content-start align-items-center">
+      <img
+        src="https://static.topcv.vn/company_logos/0ZT9refQobeAkpzsYWBdyaki10IlbFB4_1655288503____f48c9fc932b36c4eec44ec23d223fa18.png"
+        height="100" width="66"/></div>
+    <div class="col-md-3 d-flex justify-content-start row">
+      <div class="col-md-12 d-flex align-items-end">
+        <img
+          src="data:image/png;base64,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"
+          height="90" width="500"/>
+      </div>
+    </div>
+
+    <div class="col-md-3 container row">
+      <div class="col-md-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-geo-alt-fill text-primary" viewBox="0 0 16 16">
+          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+        </svg>
+      </div>
+      <div class="col-md-10">
+        <p class="font-text">
+          280 Tran Hung Dao, An Hai Tay, Son Tra, Da Nang
+        </p>
+        <span class="font-text text-primary">4,6 km</span>
+        <span class="font-text"> from Danang Airport</span>
+      </div>
+    </div>
+    <div class="col-md-3 container row">
+      <div class="col-md-2">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+               class="bi bi-telephone-fill text-primary" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547
+            2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306
+            1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42
+            18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+          </svg>
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-6 h-6 text-primary">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03
+                  4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12
+                  3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686
+                  0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162
+                  0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
+          </svg>
+        </p>
+      </div>
+      <div class="col-md-10">
+        <p class="mt-1">0236 651 7021</p>
+        <p class="font-text">https://danang.codegym.vn</p>
+      </div>
+    </div>
+  </div>
+</div>
