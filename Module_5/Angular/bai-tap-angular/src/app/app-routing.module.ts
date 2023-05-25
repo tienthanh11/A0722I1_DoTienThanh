@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./angular-component-template/angular-component-template.module').then(module => module.AngularComponentTemplateModule)
   },
   {
+    path: 'components-interaction',
+    loadChildren: () => import('./components-interaction/components-interaction.module').then(module => module.ComponentsInteractionModule)
+  },
+  {
     path: 'product',
     loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
   }
