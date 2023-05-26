@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./components-interaction/components-interaction.module').then(module => module.ComponentsInteractionModule)
   },
   {
+    path: 'angular-form',
+    loadChildren: () => import('./angular-form/angular-form.module').then(module => module.AngularFormModule)
+  },
+  {
     path: 'product',
     loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
   }
