@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Customer} from "../model/customer";
+import {CustomerType} from "../model/customer-type";
+import {CustomerService} from "../service/customer.service";
+import {CustomerTypeService} from "../service/customer-type.service";
 
 @Component({
   selector: 'app-customer-list',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerListComponent implements OnInit {
 
-  constructor() { }
+  customers: Customer[] = [];
+  customerTypes: CustomerType[] = [];
 
-  ngOnInit(): void {
+  constructor(private customerService: CustomerService,
+              private customerTypeService: CustomerTypeService) {
   }
 
+  ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll() {
+    this.customers = this.customerService.getAllCustomer();
+
+    this.customerTypes = this.customerTypeService.getAllCustomerType();
+  }
 }
