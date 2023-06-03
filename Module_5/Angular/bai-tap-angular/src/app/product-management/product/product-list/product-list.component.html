@@ -1,0 +1,30 @@
+<h1 class="text-center">Danh sách sản phẩm</h1>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>STT</th>
+      <th>Tên</th>
+      <th>Giá</th>
+      <th>Mô Tả</th>
+      <th colspan="2">
+        <button type="button" class="btn btn-outline-secondary" routerLink="/product/create">Create</button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.description}}</td>
+      <td>
+        <button type="button" class="btn btn-outline-success" [routerLink]="['/product/edit', product.id]">Edit</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-outline-danger" [routerLink]="['/product/delete', product.id]">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

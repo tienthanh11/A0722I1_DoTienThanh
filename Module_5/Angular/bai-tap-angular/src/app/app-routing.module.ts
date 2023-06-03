@@ -20,8 +20,12 @@ const routes: Routes = [
     loadChildren: () => import('./angular-form/angular-form.module').then(module => module.AngularFormModule)
   },
   {
+    path: 'service-router',
+    loadChildren: () => import('./service-router/service-router.module').then(module => module.ServiceRouterModule)
+  },
+  {
     path: 'product',
-    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
+    loadChildren: () => import('./product-management/product-management.module').then(module => module.ProductManagementModule)
   }
 ];
 
