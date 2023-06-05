@@ -12,4 +12,8 @@ export class CustomerTypeService {
   getAllCustomerType() {
     return CustomerTypeDAO.customerTypes;
   }
+
+  findByIdCustomer(id: string) {
+    return CustomerTypeDAO.customerTypes.find(customerType => customerType.id === +id);
+  }
 }

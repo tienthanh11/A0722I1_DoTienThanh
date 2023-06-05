@@ -13,6 +13,9 @@ export class CustomerListComponent implements OnInit {
 
   customers: Customer[] = [];
   customerTypes: CustomerType[] = [];
+  customerDelete: Customer = {
+    type: {}
+  };
 
   constructor(private customerService: CustomerService,
               private customerTypeService: CustomerTypeService) {
@@ -26,5 +29,14 @@ export class CustomerListComponent implements OnInit {
     this.customers = this.customerService.getAllCustomer();
 
     this.customerTypes = this.customerTypeService.getAllCustomerType();
+  }
+
+  showInfo(customer: Customer) {
+    this.customerDelete = customer;
+  }
+
+  delete(id: string) {
+    this.customerService.deleteCustomer(id);
+    this.getAll();
   }
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ContractRoutingModule } from './contract-routing.module';
 import { ContractListComponent } from './contract-list/contract-list.component';
 import { ContractCreateComponent } from './contract-create/contract-create.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ContractCreateComponent } from './contract-create/contract-create.compo
   ],
   imports: [
     CommonModule,
-    ContractRoutingModule
+    ContractRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ContractModule { }

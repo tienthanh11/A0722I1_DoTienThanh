@@ -17,4 +17,22 @@ export class CustomerService {
   createCustomer(customer) {
     CustomerDAO.customers.push(customer);
   }
+
+  findByIdCustomer(id: string) {
+    return CustomerDAO.customers.find(customer => customer.id === id);
+  }
+
+  updateCustomer(id: string, customer: Customer) {
+    for (let i = 0; i < CustomerDAO.customers.length; i++) {
+      if (CustomerDAO.customers[i].id === id) {
+        CustomerDAO.customers[i] = customer;
+      }
+    }
+  }
+
+  deleteCustomer(id: string) {
+    CustomerDAO.customers = CustomerDAO.customers.filter(customer => {
+      return customer.id !== id;
+    })
+  }
 }

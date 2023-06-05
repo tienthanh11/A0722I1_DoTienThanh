@@ -17,7 +17,7 @@
         <p class="card-text text-card"> Room size: {{facility.area}} m<sup>2</sup></p>
         <p class="card-text text-card">Description: {{facility.description}}</p>
         <a class="btn btn-outline-primary text-card me-2" [routerLink]="['/facility/edit', facility.id]">Edit</a>
-        <button type="button" class="btn btn-outline-danger text-card"
+        <button type="button" (click)="showInfo(facility)" class="btn btn-outline-danger text-card"
                 data-bs-toggle="modal" data-bs-target="#facilityModal">
           Delete
         </button>
@@ -30,19 +30,65 @@
 <div class="modal fade" id="facilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-danger" id="exampleModalLabel">Xác nhận xóa</h5>
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <h4 class="text-primary">Thông tin trước khi xoá</h4>
+        <table class="table table-bordered">
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">ID</span></td>
+            <td><span class="ml-3"> {{facilityDelete.id}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Name</span></td>
+            <td><span class="ml-3"> {{facilityDelete.name}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Area</span></td>
+            <td><span class="ml-3"> {{facilityDelete.area}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Cost</span></td>
+            <td><span class="ml-3"> {{facilityDelete.cost}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Max People</span></td>
+            <td><span class="ml-3"> {{facilityDelete.maxPeople}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Rent Type</span></td>
+            <td><span class="ml-3"> {{facilityDelete.rentType}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Service Type</span></td>
+            <td><span class="ml-3"> {{facilityDelete.serviceType}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Standard Room</span></td>
+            <td><span class="ml-3"> {{facilityDelete.standardRoom}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Description</span></td>
+            <td><span class="ml-3"> {{facilityDelete.description}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Pool Area</span></td>
+            <td><span class="ml-3"> {{facilityDelete.poolArea}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Number Of Floor</span></td>
+            <td><span class="ml-3"> {{facilityDelete.numberOfFloor}}</span></td>
+          </tr>
+        </table>
       </div>
       <div class="modal-footer">
         <div style="position: absolute; left: 18px">
           <h6 class="text-danger">Lưu ý! Hành động không thể hoàn tác!</h6>
         </div>
         <br>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete(facilityDelete.id)">
           Delete
         </button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

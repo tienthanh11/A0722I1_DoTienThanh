@@ -12,4 +12,8 @@ export class ContractService {
   getAllContract() {
     return ContractDAO.contacts;
   }
+
+  createContract(contract) {
+    ContractDAO.contacts.push(contract);
+  }
 }

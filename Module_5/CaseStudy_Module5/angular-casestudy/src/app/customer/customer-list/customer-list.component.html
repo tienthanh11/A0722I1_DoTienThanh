@@ -4,38 +4,38 @@
     <h1 class="font-text-footer" style="text-align: -webkit-center">Customer List</h1>
     <br>
     <!--+++++++++++++++++++++search+++++++++++++++++++++-->
-    <form class="mb-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="input-group">
-              <span class="input-group-text">Name Search</span>
-              <input type="text" class="form-control me-2" placeholder="Name search">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="input-group">
-              <span class="input-group-text">Email Search</span>
-              <input type="text" class="form-control me-2" placeholder="Email search">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="input-group">
-              <span class="input-group-text">Type Search</span>
-              <select class="form-select me-2" style="width: auto">
-                <option selected value="">Choose</option>
-                <option *ngFor="let customerType of customerTypes" value="{{customerType.id}}">
-                  {{customerType.name}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-1">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </div>
-        </div>
-      </div>
-    </form>
+<!--    <form class="mb-3">-->
+<!--      <div class="container">-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-4">-->
+<!--            <div class="input-group">-->
+<!--              <span class="input-group-text">Name Search</span>-->
+<!--              <input type="text" class="form-control me-2" placeholder="Name search">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-md-4">-->
+<!--            <div class="input-group">-->
+<!--              <span class="input-group-text">Email Search</span>-->
+<!--              <input type="text" class="form-control me-2" placeholder="Email search">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-md-3">-->
+<!--            <div class="input-group">-->
+<!--              <span class="input-group-text">Type Search</span>-->
+<!--              <select class="form-select me-2" style="width: auto">-->
+<!--                <option selected value="">Choose</option>-->
+<!--                <option *ngFor="let customerType of customerTypes" value="{{customerType.id}}">-->
+<!--                  {{customerType.name}}-->
+<!--                </option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-md-1">-->
+<!--            <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
     <br>
     <div class="table-responsive">
       <table class="table table-hover">
@@ -64,10 +64,7 @@
           <td>{{customer.type.name}}</td>
           <td>{{customer.name}}</td>
           <td>{{customer.birthday | date : "dd/MM/yyyy"}}</td>
-
-          <td *ngIf="customer.gender == 0">Nữ</td>
-          <td *ngIf="customer.gender == 1">Nam</td>
-
+          <td>{{customer.gender == 0 ? 'Nữ' : 'Nam'}}</td>
           <td>{{customer.idCard}}</td>
           <td>{{customer.phone}}</td>
           <td>{{customer.email}}</td>
@@ -78,7 +75,8 @@
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#customerModal">
+            <button type="button" (click)="showInfo(customer)" class="btn btn-outline-danger" data-bs-toggle="modal"
+                    data-bs-target="#customerModal">
               Delete
             </button>
           </td>
@@ -93,18 +91,58 @@
 <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-danger" id="exampleModalLabel">Xác nhận xóa</h5>
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+        <h4 class="text-primary">Thông tin trước khi xóa</h4>
+        <table class="table table-bordered">
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">ID</span></td>
+            <td><span class="ml-3"> {{customerDelete.id}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Name</span></td>
+            <td><span class="ml-3"> {{customerDelete.name}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Gender</span></td>
+            <td>
+              <span class="ml-3">{{customerDelete.gender == 0 ? 'Nữ' : 'Nam'}}</span>
+            </td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Address</span></td>
+            <td><span class="ml-3"> {{customerDelete.address}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Email</span></td>
+            <td><span class="ml-3"> {{customerDelete.email}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Phone</span></td>
+            <td><span class="ml-3"> {{customerDelete.phone}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Id Card</span></td>
+            <td><span class="ml-3"> {{customerDelete.idCard}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Birthday</span></td>
+            <td><span class="ml-3"> {{customerDelete.birthday | date: "dd/MM/yyyy"}}</span></td>
+          </tr>
+          <tr class="my-3">
+            <td><span class="input-group-text me-2">Type</span></td>
+            <td><span class="ml-3"> {{customerDelete.type.name}}</span></td>
+          </tr>
+        </table>
       </div>
       <div class="modal-footer">
         <div style="position: absolute; left: 18px">
           <h6 class="text-danger">Lưu ý! Hành động không thể hoàn tác!</h6>
         </div>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete(customerDelete.id)">Delete</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
