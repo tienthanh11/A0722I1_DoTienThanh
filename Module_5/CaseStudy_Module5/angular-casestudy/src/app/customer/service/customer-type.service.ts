@@ -1,19 +1,23 @@
 import {Injectable} from '@angular/core';
-import {CustomerTypeDAO} from "../../data/CustomerTypeDAO";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {CustomerType} from "../model/customer-type";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerTypeService {
 
-  constructor() {
+  readonly URI: string = 'http://localhost:3000/customer-types'
+
+  constructor(private httpClient: HttpClient) {
   }
 
-  getAllCustomerType() {
-    return CustomerTypeDAO.customerTypes;
+  getAllCustomerType(): Observable<CustomerType[]> {
+    return this.httpClient.get<CustomerType[]>(this.URI);
   }
 
-  findByIdCustomer(id: string) {
-    return CustomerTypeDAO.customerTypes.find(customerType => customerType.id === +id);
+  findByIdCustomer(id: string): Observable<CustomerType>{
+    return this.httpClient.get<CustomerType>(this.URI + '/' + id);
   }
 }

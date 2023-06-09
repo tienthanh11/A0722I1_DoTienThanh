@@ -1,38 +1,39 @@
 import {Injectable} from '@angular/core';
-import {CustomerDAO} from "../../data/CustomerDAO";
 import {Customer} from "../model/customer";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  constructor() {
+  readonly URI: string = 'http://localhost:3000/customers'
+
+  constructor(private httpClient: HttpClient) {
   }
 
-  getAllCustomer() {
-    return CustomerDAO.customers;
+  getAllCustomer(): Observable<Customer[]> {
+    return this.httpClient.get<Customer[]>(this.URI);
   }
 
-  createCustomer(customer) {
-    CustomerDAO.customers.push(customer);
+  createCustomer(customer: Customer): Observable<void> {
+    return this.httpClient.post<void>(this.URI, customer);
   }
 
-  findByIdCustomer(id: string) {
-    return CustomerDAO.customers.find(customer => customer.id === id);
+  findByIdCustomer(id: string): Observable<Customer> {
+    return this.httpClient.get<Customer>(this.URI + '/' + id);
   }
 
-  updateCustomer(id: string, customer: Customer) {
-    for (let i = 0; i < CustomerDAO.customers.length; i++) {
-      if (CustomerDAO.customers[i].id === id) {
-        CustomerDAO.customers[i] = customer;
-      }
-    }
+  updateCustomer(id: string, customer: Customer): Observable<Customer> {
+    return this.httpClient.put<Customer>(`${this.URI}/${id}`, customer);
   }
 
-  deleteCustomer(id: string) {
-    CustomerDAO.customers = CustomerDAO.customers.filter(customer => {
-      return customer.id !== id;
-    })
+  deleteCustomer(id: string): Observable<void> {
+    return this.httpClient.delete<void>(this.URI + '/' + id);
+  }
+
+  searchCustomer(name: string, email: string, typeId: string): Observable<Customer[]> {
+    return this.httpClient.get<Customer[]>(this.URI + '?name_like=' + name + '&email_like=' + email + '&type.id_like=' + typeId);
   }
 }

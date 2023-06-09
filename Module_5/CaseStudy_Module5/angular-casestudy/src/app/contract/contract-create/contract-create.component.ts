@@ -10,6 +10,7 @@ import {EmployeeService} from "../../employee/service/employee.service";
 import {FacilityService} from "../../facilities/service/facility.service";
 import {Router} from "@angular/router";
 import {identityRevealedValidator} from "./custom-validate.validator";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-contract-create',
@@ -28,15 +29,22 @@ export class ContractCreateComponent implements OnInit {
               private customerService: CustomerService,
               private employeeService: EmployeeService,
               private facilityService: FacilityService,
-              private router: Router) {
+              private router: Router,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
-    this.customers = this.customerService.getAllCustomer();
+    this.customerService.getAllCustomer().subscribe((data) => {
+      this.customers = data;
+    });
 
-    this.employees = this.employeeService.getAllEmployee();
+    this.employeeService.getAllEmployee().subscribe((data) => {
+      this.employees = data;
+    });
 
-    this.facilities = this.facilityService.getAllFacility();
+    this.facilityService.getAllFacility().subscribe((data) => {
+      this.facilities = data;
+    });
 
     this.contractFormCreate = new FormGroup({
       id: new FormControl('', [Validators.required, Validators.pattern('^HD-\\d{4}$')]),
@@ -51,7 +59,15 @@ export class ContractCreateComponent implements OnInit {
   }
 
   createContract() {
-    this.contractService.createContract(this.contractFormCreate.value);
-    this.router.navigateByUrl('contract/list');
+    this.contractService.createContract(this.contractFormCreate.value).subscribe(
+      () => {
+      },
+      () => {
+      },
+      () => {
+        this.toast.success("Thêm mới hợp đồng thành công");
+        this.router.navigateByUrl('contract/list');
+      }
+    );
   }
 }

@@ -1,20 +1,23 @@
 import {Injectable} from '@angular/core';
-import {DivisionDAO} from "../../data/DivisionDAO";
-import {EmployeeDAO} from "../../data/EmployeeDAO";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Division} from "../model/division";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DivisionService {
 
-  constructor() {
+  readonly URI: string = 'http://localhost:3000/divisions'
+
+  constructor(private httpClient: HttpClient) {
   }
 
-  getAllDivision() {
-    return DivisionDAO.divisions;
+  getAllDivision(): Observable<Division[]> {
+    return this.httpClient.get<Division[]>(this.URI);
   }
 
-  findByIdDivision(id: string) {
-    return DivisionDAO.divisions.find(division => division.id === +id);
+  findByIdDivision(id: string): Observable<Division> {
+    return this.httpClient.get<Division>(this.URI + '/' + id);
   }
 }

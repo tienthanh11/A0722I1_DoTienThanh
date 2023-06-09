@@ -8,6 +8,7 @@ import {NavigationComponent} from './templates/navigation/navigation.component';
 import {FooterComponent} from './templates/footer/footer.component';
 import {IntroComponent} from './templates/intro/intro.component';
 import {ToastrModule} from "ngx-toastr";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {ToastrModule} from "ngx-toastr";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',

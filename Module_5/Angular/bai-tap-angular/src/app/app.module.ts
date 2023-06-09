@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './templates/header/header.component';
 import {NavigationComponent} from './templates/navigation/navigation.component';
+import {GalleryConfig} from "./modules-and-dependency-injection/image-gallery/token";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import {NavigationComponent} from './templates/navigation/navigation.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: GalleryConfig, useValue: 3}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

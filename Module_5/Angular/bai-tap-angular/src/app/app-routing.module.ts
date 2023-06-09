@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./service-router/service-router.module').then(module => module.ServiceRouterModule)
   },
   {
+    path: 'modules-and-dependency-injection',
+    loadChildren: () => import('./modules-and-dependency-injection/modules-and-dependency-injection.module').then(module => module.ModulesAndDependencyInjectionModule)
+  },
+  {
     path: 'product',
     loadChildren: () => import('./product-management/product-management.module').then(module => module.ProductManagementModule)
   }

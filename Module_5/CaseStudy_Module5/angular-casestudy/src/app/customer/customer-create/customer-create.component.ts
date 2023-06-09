@@ -4,6 +4,7 @@ import {CustomerTypeService} from "../service/customer-type.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomerType} from "../model/customer-type";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-customer-create',
@@ -17,11 +18,14 @@ export class CustomerCreateComponent implements OnInit {
 
   constructor(private customerService: CustomerService,
               private customerTypeService: CustomerTypeService,
-              private router: Router) {
+              private router: Router,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
-    this.customerTypes = this.customerTypeService.getAllCustomerType();
+    this.customerTypeService.getAllCustomerType().subscribe((data) => {
+      this.customerTypes = data;
+    });
 
     this.customerFormCreate = new FormGroup({
       id: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
@@ -37,8 +41,15 @@ export class CustomerCreateComponent implements OnInit {
   }
 
   createCustomer() {
-    const customer = this.customerFormCreate.value;
-    this.customerService.createCustomer(customer);
-    this.router.navigateByUrl('customer/list');
+    this.customerService.createCustomer(this.customerFormCreate.value).subscribe(
+      () => {
+      },
+      () => {
+      },
+      () => {
+        this.toast.success("Thêm mới khách hàng thành công");
+        this.router.navigateByUrl('customer/list');
+      }
+    );
   }
 }

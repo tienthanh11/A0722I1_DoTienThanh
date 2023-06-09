@@ -1,20 +1,23 @@
 import {Injectable} from '@angular/core';
-import {PositionDAO} from "../../data/PositionDAO";
-import {EmployeeDAO} from "../../data/EmployeeDAO";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Position} from "../model/position";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PositionService {
 
-  constructor() {
+  readonly URI: string = 'http://localhost:3000/positions'
+
+  constructor(private httpClient: HttpClient) {
   }
 
-  getAllPosition() {
-    return PositionDAO.positions;
+  getAllPosition(): Observable<Position[]> {
+    return this.httpClient.get<Position[]>(this.URI);
   }
 
-  findByIdPosition(id: string) {
-    return PositionDAO.positions.find(position => position.id === +id);
+  findByIdPosition(id: string): Observable<Position> {
+    return this.httpClient.get<Position>(this.URI + '/' + id);
   }
 }

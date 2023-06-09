@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Facility} from "../model/facility";
 import {FacilityService} from "../service/facility.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-facilities-list',
@@ -9,10 +10,12 @@ import {FacilityService} from "../service/facility.service";
 })
 export class FacilitiesListComponent implements OnInit {
 
+  page: number = 1;
   facilities: Facility[] = [];
   facilityDelete: Facility = {};
 
-  constructor(private facilityService: FacilityService) {
+  constructor(private facilityService: FacilityService,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -20,7 +23,9 @@ export class FacilitiesListComponent implements OnInit {
   }
 
   getAll() {
-    this.facilities = this.facilityService.getAllFacility();
+    this.facilityService.getAllFacility().subscribe((data) => {
+      this.facilities = data;
+    });
   }
 
   showInfo(facility: Facility) {
@@ -28,7 +33,15 @@ export class FacilitiesListComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.facilityService.deleteFacility(id);
-    this.getAll();
+    this.facilityService.deleteFacility(id).subscribe(
+      () => {
+      },
+      () => {
+      },
+      () => {
+        this.toast.success("Xóa dịch vụ thành công");
+        this.getAll();
+      }
+    );
   }
 }

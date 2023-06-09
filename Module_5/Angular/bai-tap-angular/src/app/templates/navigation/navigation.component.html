@@ -8,67 +8,56 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="navbar-brand nav-link text-light pl-5 click" routerLink="">Home</a>
           </li>
-        </ul>
 
-        <ul class="navbar-nav me-auto">
           <li class="nav-item dropdown">
-            <a class="navbar-brand nav-link text-light pl-5 click dropdown-toggle" routerLink="/angular-overview/list"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Angular Overview
+            <a class="navbar-brand nav-link text-light pl-5 click dropdown-toggle" routerLink="" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Bài Tập và Thực Hành
             </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" routerLink="/angular-overview/list">
+                  Angular Overview
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/angular-component-template/list">
+                  Angular Component & Template
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/components-interaction/list">
+                  Components Interaction
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/angular-form/list">
+                  Angular Form
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/service-router/list">
+                  Service & Router
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/modules-and-dependency-injection/list">
+                  Modules & Dependency Injection
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  Connected with Back-end
+                </a>
+              </li>
+            </ul>
           </li>
-        </ul>
-
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item dropdown">
-            <a class="navbar-brand nav-link text-light pl-5 click dropdown-toggle"
-               routerLink="/angular-component-template/list"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Angular Component & Template
-            </a>
-          </li>
-        </ul>
-
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item dropdown">
-            <a class="navbar-brand nav-link text-light pl-5 click dropdown-toggle"
-               routerLink="/components-interaction/list"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Components Interaction
-            </a>
-          </li>
-        </ul>
-
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item dropdown">
-            <a class="navbar-brand nav-link text-light pl-5 click dropdown-toggle"
-               routerLink="/angular-form/list"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Angular Form
-            </a>
-          </li>
-        </ul>
-
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item dropdown">
-            <a class="navbar-brand nav-link text-light pl-5 click dropdown-toggle"
-               routerLink="/service-router/list"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Service & Router
-            </a>
-          </li>
-        </ul>
-
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item dropdown">
-            <a class="navbar-brand nav-link text-light pl-5 click dropdown-toggle" routerLink="/product/list"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Product Management
-            </a>
+          <li class="nav-item">
+            <a class="navbar-brand nav-link text-light pl-5 click" routerLink="/product/list">Product Management</a>
           </li>
         </ul>
       </div>

@@ -1,38 +1,39 @@
 import {Injectable} from '@angular/core';
-import {EmployeeDAO} from "../../data/EmployeeDAO";
 import {Employee} from "../model/employee";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor() {
+  readonly URI: string = 'http://localhost:3000/employees'
+
+  constructor(private httpClient: HttpClient) {
   }
 
-  getAllEmployee() {
-    return EmployeeDAO.employees;
+  getAllEmployee(): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(this.URI);
   }
 
-  createEmployee(employee) {
-    EmployeeDAO.employees.push(employee);
+  createEmployee(employee: Employee): Observable<void> {
+    return this.httpClient.post<void>(this.URI, employee);
   }
 
-  findByIdEmployee(id: string) {
-    return EmployeeDAO.employees.find(employee => employee.id === id);
+  findByIdEmployee(id: string): Observable<Employee> {
+    return this.httpClient.get<Employee>(this.URI + '/' + id);
   }
 
-  updateEmployee(id: string, employee: Employee) {
-    for (let i = 0; i < EmployeeDAO.employees.length; i++) {
-      if (EmployeeDAO.employees[i].id === id) {
-        EmployeeDAO.employees[i] = employee;
-      }
-    }
+  updateEmployee(id: string, employee: Employee): Observable<Employee> {
+    return this.httpClient.put<Employee>(`${this.URI}/${id}`, employee);
   }
 
-  deleteEmployee(id: string) {
-    EmployeeDAO.employees = EmployeeDAO.employees.filter(employee => {
-      return employee.id !== id;
-    })
+  deleteEmployee(id: string): Observable<void> {
+    return this.httpClient.delete<void>(this.URI + '/' + id);
+  }
+
+  searchEmployee(name: string, email: string, divisionId: string): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(this.URI + '?name_like=' + name + '&email_like=' + email + '&division.id_like=' + divisionId);
   }
 }
