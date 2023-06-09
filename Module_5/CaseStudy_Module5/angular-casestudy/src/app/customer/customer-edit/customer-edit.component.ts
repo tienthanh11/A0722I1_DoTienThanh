@@ -32,16 +32,17 @@ export class CustomerEditComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('id');
       this.customerService.findByIdCustomer(this.id).subscribe((customerEdit) => {
+        debugger
         this.customerFormEdit = new FormGroup({
-          id: new FormControl(customerEdit.id, [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
-          type: new FormControl(customerEdit.type.id, [Validators.required]),
-          name: new FormControl(customerEdit.name, [Validators.required, Validators.pattern('^\\D*$')]),
-          birthday: new FormControl(customerEdit.birthday, [Validators.required]),
-          gender: new FormControl(customerEdit.gender, [Validators.required]),
-          idCard: new FormControl(customerEdit.idCard, [Validators.required, Validators.pattern('(^\\d{9}$)|(^\\d{12}$)')]),
-          phone: new FormControl(customerEdit.phone, [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}$')]),
-          email: new FormControl(customerEdit.email, [Validators.required, Validators.email]),
-          address: new FormControl(customerEdit.address, [Validators.required]),
+          customerId: new FormControl(customerEdit.customerId, [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
+          customerTypeId: new FormControl(customerEdit.customerTypeId.customerTypeId, [Validators.required]),
+          customerName: new FormControl(customerEdit.customerName, [Validators.required, Validators.pattern('^\\D*$')]),
+          customerBirthday: new FormControl(customerEdit.customerBirthday?.substr(0, 10), [Validators.required]),
+          customerGender: new FormControl(customerEdit.customerGender, [Validators.required]),
+          customerIdCard: new FormControl(customerEdit.customerIdCard, [Validators.required, Validators.pattern('(^\\d{9}$)|(^\\d{12}$)')]),
+          customerPhone: new FormControl(customerEdit.customerPhone, [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}$')]),
+          customerEmail: new FormControl(customerEdit.customerEmail, [Validators.required, Validators.email]),
+          customerAddress: new FormControl(customerEdit.customerAddress, [Validators.required]),
         });
       });
     });
@@ -51,10 +52,10 @@ export class CustomerEditComponent implements OnInit {
 /*    const customer = this.customerFormEdit.value;
     customer.type = this.customerTypeService.findByIdCustomer(customer.type);
     this.customerService.updateCustomer(id, customer);*/
-    this.customerTypeService.findByIdCustomer(this.customerFormEdit.get('type').value).subscribe(
+    this.customerTypeService.findByIdCustomer(this.customerFormEdit.get('customerTypeId').value).subscribe(
       (data) => {
         this.customerFormEdit.patchValue({
-          type: data
+          customerTypeId: data
         })
       },
       () => {

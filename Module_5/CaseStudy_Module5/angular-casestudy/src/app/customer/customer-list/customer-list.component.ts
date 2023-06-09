@@ -16,7 +16,7 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[] = [];
   customerTypes: CustomerType[] = [];
   customerDelete: Customer = {
-    type: {}
+    customerTypeId: {}
   };
   page: number = 1;
   totalLength: number;

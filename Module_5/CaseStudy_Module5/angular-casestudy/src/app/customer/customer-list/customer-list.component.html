@@ -24,8 +24,8 @@
               <span class="input-group-text">Type Search</span>
               <select class="form-select me-2" formControlName="typeId" style="width: auto">
                 <option selected value="">Choose</option>
-                <option *ngFor="let customerType of customerTypes" value="{{customerType.id}}">
-                  {{customerType.name}}
+                <option *ngFor="let customerType of customerTypes" value="{{customerType.customerTypeId}}">
+                  {{customerType.customerTypeName}}
                 </option>
               </select>
             </div>
@@ -58,19 +58,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let customer of customers | paginate: {itemsPerPage: 5, currentPage: page, totalItems: totalLength}, index as i">
+        <tr
+          *ngFor="let customer of customers | paginate: {itemsPerPage: 5, currentPage: page, totalItems: totalLength}, index as i">
           <td>{{i + 1}}</td>
-          <td>{{customer.id}}</td>
-          <td>{{customer.type.name}}</td>
-          <td>{{customer.name}}</td>
-          <td>{{customer.birthday | date : "dd/MM/yyyy"}}</td>
-          <td>{{customer.gender == 0 ? 'Nữ' : 'Nam'}}</td>
-          <td>{{customer.idCard}}</td>
-          <td>{{customer.phone}}</td>
-          <td>{{customer.email}}</td>
-          <td>{{customer.address}}</td>
+          <td>{{customer.customerId}}</td>
+          <td>{{customer.customerTypeId.customerTypeName}}</td>
+          <td>{{customer.customerName}}</td>
+          <td>{{customer.customerBirthday | date : "dd/MM/yyyy"}}</td>
+          <td>{{customer.customerGender == false ? 'Nữ' : 'Nam'}}</td>
+          <td>{{customer.customerIdCard}}</td>
+          <td>{{customer.customerPhone}}</td>
+          <td>{{customer.customerEmail}}</td>
+          <td>{{customer.customerAddress}}</td>
           <td>
-            <button type="button" class="btn btn-outline-primary" [routerLink]="['/customer/edit', customer.id]">
+            <button type="button" class="btn btn-outline-primary"
+                    [routerLink]="['/customer/edit', customer.customerId]">
               Edit
             </button>
           </td>
@@ -103,41 +105,41 @@
         <table class="table table-bordered">
           <tr class="my-3">
             <td><span class="input-group-text me-2">ID</span></td>
-            <td><span class="ml-3"> {{customerDelete.id}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerId}}</span></td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Name</span></td>
-            <td><span class="ml-3"> {{customerDelete.name}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerName}}</span></td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Gender</span></td>
             <td>
-              <span class="ml-3">{{customerDelete.gender == 0 ? 'Nữ' : 'Nam'}}</span>
+              <span class="ml-3">{{customerDelete.customerGender == 0 ? 'Nữ' : 'Nam'}}</span>
             </td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Address</span></td>
-            <td><span class="ml-3"> {{customerDelete.address}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerAddress}}</span></td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Email</span></td>
-            <td><span class="ml-3"> {{customerDelete.email}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerEmail}}</span></td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Phone</span></td>
-            <td><span class="ml-3"> {{customerDelete.phone}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerPhone}}</span></td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Id Card</span></td>
-            <td><span class="ml-3"> {{customerDelete.idCard}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerIdCard}}</span></td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Birthday</span></td>
-            <td><span class="ml-3"> {{customerDelete.birthday | date: "dd/MM/yyyy"}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerBirthday | date: "dd/MM/yyyy"}}</span></td>
           </tr>
           <tr class="my-3">
             <td><span class="input-group-text me-2">Type</span></td>
-            <td><span class="ml-3"> {{customerDelete.type.name}}</span></td>
+            <td><span class="ml-3"> {{customerDelete.customerTypeId.customerTypeName}}</span></td>
           </tr>
         </table>
       </div>
@@ -145,7 +147,10 @@
         <div style="position: absolute; left: 18px">
           <h6 class="text-danger">Lưu ý! Hành động không thể hoàn tác!</h6>
         </div>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete(customerDelete.id)">Delete</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                (click)="delete(customerDelete.customerId)">
+          Delete
+        </button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>

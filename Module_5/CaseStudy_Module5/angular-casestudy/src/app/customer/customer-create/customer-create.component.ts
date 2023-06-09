@@ -28,15 +28,15 @@ export class CustomerCreateComponent implements OnInit {
     });
 
     this.customerFormCreate = new FormGroup({
-      id: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
-      type: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required, Validators.pattern('^\\D*$')]),
-      birthday: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      idCard: new FormControl('', [Validators.required, Validators.pattern('(^\\d{9}$)|(^\\d{12}$)')]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}$')]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      address: new FormControl('', [Validators.required]),
+      customerId: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
+      customerTypeId: new FormControl('', [Validators.required]),
+      customerName: new FormControl('', [Validators.required, Validators.pattern('^\\D*$')]),
+      customerBirthday: new FormControl('', [Validators.required]),
+      customerGender: new FormControl('', [Validators.required]),
+      customerIdCard: new FormControl('', [Validators.required, Validators.pattern('(^\\d{9}$)|(^\\d{12}$)')]),
+      customerPhone: new FormControl('', [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}$')]),
+      customerEmail: new FormControl('', [Validators.required, Validators.email]),
+      customerAddress: new FormControl('', [Validators.required]),
     });
   }
 
