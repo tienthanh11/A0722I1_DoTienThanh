@@ -1,4 +1,4 @@
 export interface EducationDegree {
-  id?: number;
-  name?: string;
+  educationDegreeId?: number;
+  educationDegreeName?: string;
 }
